@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner</title>
+    <!-- <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script> -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <main>
+        <div id="reader"></div>
+        <div id="result"></div>
+    </main>
+    
+<script>
+    const scanner = new Html5QrcodeScanner('reader',{
+        qrscannerbox:{
+            width: 250,
+            height:250,
+        },
+        fps:20,
+    });
+
+    scanner.render(success, error);
+
+    function success(result){
+        document.getElementById('result').innerHTML = `<h2 id="success">Success!</h2>
+        <p><a href="${result}">${result}</a></p>`;
+        scanner.clear();
+        document.getElementById('reader').remove();
+    }
+
+    function error(err){
+
+    }
+</script>
+</body>
+</html>
